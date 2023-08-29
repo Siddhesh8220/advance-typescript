@@ -1,4 +1,5 @@
 import { truncate } from "fs";
+export {}
 
 // Lexical this
 
@@ -11,7 +12,7 @@ class SomeClass {
   getAgeFunc() {
     return this.age;
   }
-  getAgeArrowFunc() {
+  getAgeArrowFunc = () => {
     return this.age;
   }
 }
@@ -22,7 +23,7 @@ console.log(someInstance.getAgeArrowFunc()); // Success
 const funct1 = someInstance.getAgeFunc;
 const funct2 = someInstance.getAgeArrowFunc;
 console.log(funct2()); // No error
-console.log(funct1()); // Error due to this behave differently in noraml func compaed to arraow func: lexical scoping
+console.log(funct1()); // runtime error due to this behave differently in noraml func compaed to arraow func: lexical scoping
 
 /*
 Arrow functions do not bind their own this, instead, they inherit the one from the parent scope, which is called "lexical scoping". 
@@ -208,7 +209,7 @@ type vehicle = {
 
 class Flower {
   name?: string; // optional value
-  color: string;
+  color: string; // not optional
 }
 
 /* Interfaces are similar to types but they have different syntax */
@@ -286,11 +287,32 @@ const vehicleInfo = (v: Vehicle) => {
 
   if (v.kind === "car") {
     return console.log("car");
-  }
-  else if (v.kind === "motorcycle") {
+  } else if (v.kind === "motorcycle") {
     return console.log("motorcycle");
   }
   const _ensureAllCasesHandledAfterHandling: never = v; // no error as we handled both car and motorcycle cases
-  return _ensureAllCasesHandledAfterHandling
+  return _ensureAllCasesHandledAfterHandling;
   //We can use this variable to ensure all fields are handled during development
 };
+
+/* Not null assertion operator */
+
+type g = {
+  x: number;
+  y: number;
+};
+
+let obj: g;
+
+const initailize = () => {
+  obj = {
+    x: 2,
+    y: 3,
+  };
+};
+
+initailize()
+console.log(obj.x, obj.y);
+// Here typescipt dont know if obj is initilized or not hence it is throwing an error
+// we can easily fix this issuse is not null assertion operator
+console.log(obj!.x, obj!.y)

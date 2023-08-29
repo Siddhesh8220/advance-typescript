@@ -1,4 +1,6 @@
 // primitive typses in javascript/typescript
+export {}
+
 let c: string = "hello";
 let num: number = 23;
 let bool: boolean = true;
@@ -33,7 +35,7 @@ let array: number[] = [1, 2, 3];
 
 array = [1];
 array = [1, 2, 3, 4];
-array = ["hii"]; //Error
+array = ["hii"]; //Error: String not allowed 
 
 let tuple: [number, number, number] = [0, 1, 2]; // fix number array
 tuple = [1, 2]; // Error
@@ -95,12 +97,14 @@ point2D = point3D; // No Error as it contains all the fields
 
 class Animal {
   private name: String = "Hello"; // ts speciic private delration
+  age: number = 10
   constructor() {}
 }
 
 class Cat extends Animal {
   constructor() {
     super();
+    console.log(this.age); // no error
     console.log(this.name); // error
   }
 }
@@ -126,7 +130,6 @@ console.log(queue.pop());
 console.log(queue.pop());
 
 // Any and unknown
-
 let exmpleAny: any;
 let exmpleUnkown: unknown;
 
@@ -169,7 +172,7 @@ console.log((hello as string).trim()) // No Error
 // Type casting
 
 let number = "1337"
-/* + before number converts string number to number called type coersion*/
+/* + before number converts string number to number called type coersion which works in typescript*/
 console.log(+number === 1337)
 console.log(+number)
 

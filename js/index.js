@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-// primitive typses in javascript/typescript
+Object.defineProperty(exports, "__esModule", { value: true });
 let c = "hello";
 let num = 23;
 let bool = true;
@@ -35,7 +35,7 @@ let q = new Queue();
 let array = [1, 2, 3];
 array = [1];
 array = [1, 2, 3, 4];
-array = ["hii"]; //Error
+array = ["hii"]; //Error: String not allowed 
 let tuple = [0, 1, 2]; // fix number array
 tuple = [1, 2]; // Error
 tuple = [1, 2, 3];
@@ -74,11 +74,13 @@ point2D = point3D; // No Error as it contains all the fields
 class Animal {
     constructor() {
         this.name = "Hello"; // ts speciic private delration
+        this.age = 10;
     }
 }
 class Cat extends Animal {
     constructor() {
         super();
+        console.log(this.age); // no error
         console.log(this.name); // error
     }
 }
@@ -131,7 +133,7 @@ console.log(hello.trim()); // Error
 console.log(hello.trim()); // No Error
 // Type casting
 let number = "1337";
-/* + before number converts string number to number called type coersion*/
+/* + before number converts string number to number called type coersion which works in typescript*/
 console.log(+number === 1337);
 console.log(+number);
 // enviornment variables
